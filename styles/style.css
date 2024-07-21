@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #353535;
+}
+
+/* Sidebar styling */
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+/* Content styling */
+.content {
+    margin-left: 250px; /* Same as the width of the sidebar */
+    padding: 20px;
+}
+
+/* Additional styles for the embedded widget */
+.weather-app {
+    margin-bottom: 200px; /* Space above the widget */
+    text-align: center; /* Center the widget within the container */
+}
+
+.weather-app iframe {
+    border: none; /* Remove default border */
+}
+
+
+h1, p {
+    margin: 0 0 20px;
+    color:white;
+}
