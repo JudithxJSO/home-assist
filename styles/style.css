@@ -1,13 +1,20 @@
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ }
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     background-color: #353535;
+    color:white;
 }
 
-/* Sidebar styling */
 .sidebar {
+    display: block;
     height: 100vh;
     width: 250px;
     position: fixed;
@@ -44,24 +51,137 @@ body {
     background-color: #575757;
 }
 
-/* Content styling */
 .content {
     margin-left: 250px; /* Same as the width of the sidebar */
     padding: 20px;
+    width: calc(100% - 250px);
 }
 
-/* Additional styles for the embedded widget */
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .weather-app {
-    margin-bottom: 200px; /* Space above the widget */
-    text-align: center; /* Center the widget within the container */
+    flex: 3; /* 60% of the space */
 }
 
 .weather-app iframe {
-    border: none; /* Remove default border */
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
 }
 
-
-h1, p {
-    margin: 0 0 20px;
-    color:white;
+.date-time {
+    flex: 2; /* 40% of the space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:200px;
 }
+
+.date-time iframe {
+    width: 100%;
+    height: auto;
+    max-width: 184px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #353535;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.braindump{
+    width: 100%;
+    height:1000px;
+}
+h1 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+.todo-input-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#todo-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#add-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#add-button:hover {
+    background-color: #218838;
+}
+
+.todo-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #222;
+}
+
+.todo-bar .task {
+    background-color: #000;
+    padding: 10px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    min-width: 150px;
+    max-width: 400px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.task.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+button.complete-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button.complete-button:hover {
+    background-color: #0056b3;
+}
+
+button.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button.delete-button:hover {
+    background-color: #c82333;
+}
+

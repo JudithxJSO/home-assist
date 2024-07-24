@@ -4,32 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar Example</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="sidebar">
         <h2>Sidebar</h2>
         <ul>
             <li><a href="/index.html">Home</a></li>
-            <li><a href="/music.html">Youtube Music</a></li>
-            <li><a href="#clients">Clients</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://music.youtube.com/">Youtube Music</a></li>
+            <li><a href="/braindump.html">Brain dump</a></li>
+            <li><a href="/calendar.html">Calendar</a></li>
         </ul>
     </div>
 
     <div class="content">
-        <div class="weather-app">
-            <iframe src="https://indify.co/widgets/live/weather/s92QYnsLwbHRXUpr0vPD"
-                    width="1000px" 
-                    height="500px" 
-                    frameborder="0"
-                    scrolling="no">
-            </iframe>
+        <div class="content-wrapper">
+            <div class="weather-app">
+                <iframe src="https://indify.co/widgets/live/weather/s92QYnsLwbHRXUpr0vPD"
+                        frameborder="0"
+                        scrolling="no">
+                </iframe>
+            </div>
+            <div class="date-time">
+                <iframe src="https://www.notion-widgets.com/embed/669d3b8ec12470e055e1e037" 
+                frameborder="0" 
+                width="100%" 
+                height="100%"
+                scrolling="no">
+        </iframe>
+            </div>
+           
+        </div>
+        <div class="container">
+            <h1>To-Do List</h1>
+            <div class="todo-input-container">
+                <input type="text" id="todo-input" placeholder="Enter a new task">
+                <button id="add-button">Add Task</button>
+            </div>
+            <div class="todo-bar" id="todo-bar"></div>
+        </div>
     </div>
-    <div class="date-time">
-        <iframe src="https://free.timeanddate.com/clock/i9gwclww/n16/tlbe14/fn17/fcfff/tc353535/pc353535/ftb/tt0/tm3/td2/th1/ts1/tb4" frameborder="0" width="184" height="37"></iframe>
+    <script src="/scripts/script.js"></script>
 
-    </div>
-    </div>
 </body>
 </html>
+
