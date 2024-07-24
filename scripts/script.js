@@ -3,45 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const todoInput = document.getElementById('todo-input');
     const todoBar = document.getElementById('todo-bar');
 
-    function addTask() {
-        const taskText = todoInput.value.trim();
-        if (taskText === '') return; // Prevent adding empty tasks
-
-        // Create a new task element
-        const taskElement = document.createElement('div');
-        taskElement.className = 'task';
-
-        // Create a span for the task text
-        const taskSpan = document.createElement('span');
-        taskSpan.textContent = taskText;
-        taskElement.appendChild(taskSpan);
-
-        // Create a button to mark the task as completed
-        const completeButton = document.createElement('button');
-        completeButton.textContent = 'Complete';
-        completeButton.className = 'complete-button';
-        completeButton.addEventListener('click', function() {
-            taskElement.classList.toggle('completed');
-        });
-        taskElement.appendChild(completeButton);
-
-        // Create a button to delete the task
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'delete-button';
-        deleteButton.addEventListener('click', function() {
-            todoBar.removeChild(taskElement);
-        });
-        taskElement.appendChild(deleteButton);
-
-        // Add the task element to the task bar
-        todoBar.appendChild(taskElement);
-
-        // Clear the input field
-        todoInput.value = '';
+    // Verify if elements are correctly referenced
+    if (!addButton || !todoInput || !todoBar) {
+        console.error('Essential elements are missing in the HTML.');
+        return;
     }
 
-    // Add a task when the "Add Task" button is clicked
+    // Load saved todos
+    loadTodos();
+
+    // Add event listener to the add button
     addButton.addEventListener('click', addTask);
 
     // Allow pressing Enter to add a task
@@ -50,5 +21,69 @@ document.addEventListener('DOMContentLoaded', function() {
             addTask();
         }
     });
+
+    function addTask() {
+        const taskText = todoInput.value.trim();
+        console.log('Adding task:', taskText); // Debug statement
+        if (taskText === '') return; // Prevent adding empty tasks
+
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        const newTodo = { text: taskText, completed: false };
+        todos.push(newTodo);
+        localStorage.setItem('todos', JSON.stringify(todos));
+
+        todoInput.value = ''; // Clear the input field
+        loadTodos();
+    }
+
+    function loadTodos() {
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        console.log('Loading todos:', todos); // Debug statement
+        todoBar.innerHTML = '';
+
+        todos.forEach((todo, index) => {
+            const taskElement = document.createElement('div');
+            taskElement.className = 'task';
+            if (todo.completed) {
+                taskElement.classList.add('completed');
+            }
+
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = todo.text;
+            taskElement.appendChild(taskSpan);
+
+            const completeButton = document.createElement('button');
+            completeButton.textContent = 'Complete';
+            completeButton.className = 'complete-button';
+            completeButton.addEventListener('click', function() {
+                toggleComplete(index);
+            });
+            taskElement.appendChild(completeButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.addEventListener('click', function() {
+                deleteTask(index);
+            });
+            taskElement.appendChild(deleteButton);
+
+            todoBar.appendChild(taskElement);
+        });
+    }
+
+    function toggleComplete(index) {
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        todos[index].completed = !todos[index].completed;
+        localStorage.setItem('todos', JSON.stringify(todos));
+        loadTodos();
+    }
+
+    function deleteTask(index) {
+        const todos = JSON.parse(localStorage.getItem('todos')) || [];
+        todos.splice(index, 1);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        loadTodos();
+    }
 });
 
